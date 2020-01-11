@@ -6,4 +6,3 @@ class Todo(models.Model):
     duration = models.CharField(max_length=50)
     description = models.TextField()
     published_at = models.DateTimeField()
-
