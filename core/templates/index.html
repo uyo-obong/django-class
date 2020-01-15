@@ -1,84 +1,10 @@
-{% load crispy_forms_tags %}
+{% extends 'layouts/master.html' %}
 
-<html>
-<head>
-    <title>Django app</title>
+{% block content %}
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
+<div class="row">
+    {% include 'forms.html' %}
 
-<body>
-
-<div class="container">
-    <div class="jumbotron">
-        <center> <h1>todolist with Django</h1></center>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-success"> {{ message }}</div>
-            {% endfor %}
-            {% endif %}
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ form.title|as_crispy_field }}
-                </div>
-
-                <div class="form-group">
-                    {{ form.duration|as_crispy_field }}
-                </div>
-
-                <div class="form-group">
-                    {{ form.description|as_crispy_field }}
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                </div>
-
-
-            </form>
-        </div>
-        <div class="col-md-8">
-            <div class="panel panel-default">
-                <!-- Default panel contents -->
-                <div class="panel-heading">Todos</div>
-
-                <!-- Table -->
-                <table class="table">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Duration</th>
-                            <th scope="col">published</th>
-                            <th scope="col">Update</th>
-                            <th scope="col">Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for todo in todos %}
-                        <tr>
-                            <th scope="row">{{ todo.pk }}</th>
-                            <td>{{ todo.title }}</td>
-                            <td>{{ todo.duration }} days</td>
-                            <td>{{ todo.published_at|date:"M d, Y" }}</td>
-                            <td><a class="btn btn-success" href="">Update</a> </td>
-                            <td><a class="btn btn-danger" href="">Delete</a> </td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </table>
-            </div>
-        </div>
-    </div>
-
+    {% include 'table.html' %}
 </div>
-
-</body>
-</html>
+{% endblock %}

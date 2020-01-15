@@ -1,0 +1,34 @@
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Todos</div>
+
+        <!-- Table -->
+        <table class="table">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">published</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for todo in todos %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ todo.title }}</td>
+                    <td>{{ todo.duration }} days</td>
+                    <td>{{ todo.published_at|date:"M d, Y" }}</td>
+                    <td><a class="btn btn-success" href="{% url 'todo.edit' pk=todo.pk %}">Update</a> </td>
+                    <td><a class="btn btn-danger" href="{% url 'todo.delete' pk=todo.pk %}">Delete</a> </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </table>
+    </div>
+</div>
